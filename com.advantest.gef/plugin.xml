@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.advantest.gef.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.advantest.gef.Perspective"
+            name="RCP Perspective"
+            id="com.advantest.gef.perspective">
+      </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.advantest.gef.editor.MyGraphicalEditor"
+            default="false"
+            id="com.advantest.gef.mygraphicaleditor"
+            name="MyGraphicalEditor">
+      </editor>
+   </extension>
+
+</plugin>
