@@ -7,7 +7,6 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.LineBorder;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.ui.actions.NewWizardAction;
 
 public class EntrepriseFigure extends Figure {
 	private Label labelName = new Label();
