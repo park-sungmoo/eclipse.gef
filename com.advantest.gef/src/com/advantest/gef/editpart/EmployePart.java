@@ -4,6 +4,9 @@ import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPolicy;
+
+import com.advantest.gef.editpolicies.AppDeletePolicy;
 import com.advantest.gef.figure.EmployeFigure;
 import com.advantest.gef.model.Employe;
 import com.advantest.gef.model.Node;
@@ -18,8 +21,7 @@ public class EmployePart extends AppAbstractEditpart {
 
 	@Override
 	protected void createEditPolicies() {
-		// TODO Auto-generated method stub
-
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
 	}
 	
 	@Override

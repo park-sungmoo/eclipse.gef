@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
+
+import com.advantest.gef.editpolicies.AppDeletePolicy;
 import com.advantest.gef.editpolicies.AppEditLayoutPolicy;
 import com.advantest.gef.figure.ServiceFigure;
 import com.advantest.gef.model.Node;
@@ -21,6 +23,7 @@ public class ServicePart extends AppAbstractEditpart {
 	@Override
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
 	}
 	
 	@Override
@@ -44,6 +47,12 @@ public class ServicePart extends AppAbstractEditpart {
 	public void propertyChange(PropertyChangeEvent evt) {
 		if (evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
 			refreshVisuals();
+		}
+		if (evt.getPropertyName().equals(Node.PROPERTY_ADD_NODE)) {
+			refreshChildren();
+		}
+		if (evt.getPropertyName().equals(Node.PROPERTY_DELETE_NODE)) {
+			refreshChildren();
 		}
 	}
 

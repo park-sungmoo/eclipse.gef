@@ -16,6 +16,8 @@ public class Node {
 	 * propertyChangeSupport
 	 */
 	public static final String PROPERTY_LAYOUT = "NodeLayout";
+	public static final String PROPERTY_ADD_NODE = "AddNode";
+	public static final String PROPERTY_DELETE_NODE = "DeleteNode";
 	private PropertyChangeSupport listens;
 	
 	public Node() {
@@ -64,13 +66,21 @@ public class Node {
 	}
 	
 	public boolean addChild(Node child) {
-		child.setParent(this);
-		return this.children.add(child);
+		boolean b = this.children.add(child);
+		if (b) {
+			child.setParent(this);
+			getListeners().firePropertyChange(PROPERTY_ADD_NODE, null, child);
+		}
+		return b;
 	}
 	
 	public boolean removeChild(Node child) {
-		child.setParent(null);
-		return this.children.remove(child);
+		boolean b = this.children.remove(child);
+		if (b) {
+			child.setParent(null);
+			getListeners().firePropertyChange(PROPERTY_DELETE_NODE, child, null);
+		}
+		return b;
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
