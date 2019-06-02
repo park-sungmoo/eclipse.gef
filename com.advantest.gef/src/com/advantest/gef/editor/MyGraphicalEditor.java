@@ -18,12 +18,14 @@ import org.eclipse.gef.MouseWheelHandler;
 import org.eclipse.gef.MouseWheelZoomHandler;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
+import org.eclipse.gef.ui.actions.ActionRegistry;
 import org.eclipse.gef.ui.actions.GEFActionConstants;
 import org.eclipse.gef.ui.actions.ZoomInAction;
 import org.eclipse.gef.ui.actions.ZoomOutAction;
 import org.eclipse.gef.ui.parts.ContentOutlinePage;
 import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gef.ui.parts.TreeViewer;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.DisposeEvent;
@@ -39,6 +41,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.NewPropertySheetHandler;
 
 import com.advantest.gef.AppContextMenuProvider;
+import com.advantest.gef.action.RenameAction;
 import com.advantest.gef.editpart.AppEditPartFactory;
 import com.advantest.gef.model.Employe;
 import com.advantest.gef.model.Entreprise;
@@ -166,6 +169,15 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
 		viewer.setContextMenu(provider);
 
+	}
+	
+	public void createActions() {
+		super.createActions();
+		
+		ActionRegistry registry = getActionRegistry();
+		IAction action = new RenameAction(this);
+		registry.registerAction(action);
+		getSelectionActions().add(action.getId());
 	}
 
 	@Override

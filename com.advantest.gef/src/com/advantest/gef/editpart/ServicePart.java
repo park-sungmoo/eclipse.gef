@@ -8,6 +8,7 @@ import org.eclipse.gef.EditPolicy;
 
 import com.advantest.gef.editpolicies.AppDeletePolicy;
 import com.advantest.gef.editpolicies.AppEditLayoutPolicy;
+import com.advantest.gef.editpolicies.AppRenamePolicy;
 import com.advantest.gef.figure.ServiceFigure;
 import com.advantest.gef.model.Node;
 import com.advantest.gef.model.Service;
@@ -24,6 +25,7 @@ public class ServicePart extends AppAbstractEditpart {
 	protected void createEditPolicies() {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new AppEditLayoutPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new AppDeletePolicy());
+		installEditPolicy(EditPolicy.NODE_ROLE, new AppRenamePolicy());
 	}
 	
 	@Override
@@ -53,6 +55,9 @@ public class ServicePart extends AppAbstractEditpart {
 		}
 		if (evt.getPropertyName().equals(Node.PROPERTY_DELETE_NODE)) {
 			refreshChildren();
+		}
+		if (evt.getPropertyName().equals(Node.PROPERTY_RENAME)) {
+			refreshVisuals();
 		}
 	}
 
