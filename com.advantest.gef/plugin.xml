@@ -23,6 +23,7 @@
          point="org.eclipse.ui.editors">
       <editor
             class="com.advantest.gef.editor.MyGraphicalEditor"
+            contributorClass="com.advantest.gef.MyGraphicalEditorActionBarContributor"
             default="false"
             id="com.advantest.gef.mygraphicaleditor"
             name="MyGraphicalEditor">
