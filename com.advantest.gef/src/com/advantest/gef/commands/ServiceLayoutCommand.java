@@ -7,6 +7,7 @@ import com.advantest.gef.model.Service;
 public class ServiceLayoutCommand extends AbstractLayoutCommand {
 	private Service model;
 	private Rectangle layout;
+	private Rectangle oldLayout;
 
 	@Override
 	public void setConstraint(Rectangle rectangle) {
@@ -16,6 +17,7 @@ public class ServiceLayoutCommand extends AbstractLayoutCommand {
 	@Override
 	public void setModel(Object model) {
 		this.model = (Service)model;
+		oldLayout = ((Service)model).getRectangle();
 	}
 	
 	@Override
@@ -23,4 +25,8 @@ public class ServiceLayoutCommand extends AbstractLayoutCommand {
 		model.setRectangle(layout);
 	}
 
+	@Override
+	public void undo() {
+		model.setRectangle(oldLayout);
+	}
 }

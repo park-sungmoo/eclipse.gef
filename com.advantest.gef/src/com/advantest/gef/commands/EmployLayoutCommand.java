@@ -6,6 +6,7 @@ import com.advantest.gef.model.Employe;
 public class EmployLayoutCommand extends AbstractLayoutCommand {
 	private Employe model;
 	private Rectangle layout;
+	private Rectangle oldLayout;
 	
 	@Override
 	public void setConstraint(Rectangle rectangle) {
@@ -15,11 +16,17 @@ public class EmployLayoutCommand extends AbstractLayoutCommand {
 	@Override
 	public void setModel(Object model) {
 		this.model = (Employe)model;
+		oldLayout = ((Employe)model).getRectangle();
 	}
 	
 	@Override
 	public void execute() {
 		model.setRectangle(layout);
+	}
+	
+	@Override
+	public void undo() {
+		model.setRectangle(oldLayout);
 	}
 
 }
