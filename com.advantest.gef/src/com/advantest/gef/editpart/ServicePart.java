@@ -1,16 +1,16 @@
 package com.advantest.gef.editpart;
 
+import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-
 import com.advantest.gef.editpolicies.AppEditLayoutPolicy;
 import com.advantest.gef.figure.ServiceFigure;
+import com.advantest.gef.model.Node;
 import com.advantest.gef.model.Service;
 
-public class ServicePart extends AbstractGraphicalEditPart {
+public class ServicePart extends AppAbstractEditpart {
 
 	@Override
 	protected IFigure createFigure() {
@@ -38,6 +38,13 @@ public class ServicePart extends AbstractGraphicalEditPart {
 	@Override
 	protected List getModelChildren() {
 		return ((Service)getModel()).getChildren();
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if (evt.getPropertyName().equals(Node.PROPERTY_LAYOUT)) {
+			refreshVisuals();
+		}
 	}
 
 }

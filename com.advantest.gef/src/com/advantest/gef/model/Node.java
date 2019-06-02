@@ -1,5 +1,7 @@
 package com.advantest.gef.model;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -10,11 +12,18 @@ public class Node {
 	private List<Node> children;
 	private Node parent;
 	
+	/*
+	 * propertyChangeSupport
+	 */
+	public static final String PROPERTY_LAYOUT = "NodeLayout";
+	private PropertyChangeSupport listens;
+	
 	public Node() {
 		this.name = "Unknown";
 		this.rectangle = new Rectangle(10, 10, 100, 100);
 		this.children = new ArrayList<Node>();
 		this.parent = null;
+		listens = new PropertyChangeSupport(this);
 	}
 	
 	public Node(String name, Rectangle rectangle, List<Node> children, Node parent) {
@@ -23,6 +32,7 @@ public class Node {
 		this.rectangle = rectangle;
 		this.children = children;
 		this.parent = parent;
+		listens = new PropertyChangeSupport(this);
 	}
 	
 	public String getName() {
@@ -34,9 +44,12 @@ public class Node {
 	public Rectangle getRectangle() {
 		return rectangle;
 	}
-	public void setRectangle(Rectangle rectangle) {
-		this.rectangle = rectangle;
+	public void setRectangle(Rectangle newLayout) {
+		Rectangle oldLayout = this.rectangle;
+		this.rectangle = newLayout;
+		getListeners().firePropertyChange(PROPERTY_LAYOUT, oldLayout, newLayout);
 	}
+	
 	public List<Node> getChildren() {
 		return children;
 	}
@@ -60,5 +73,15 @@ public class Node {
 		return this.children.remove(child);
 	}
 	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		listens.addPropertyChangeListener(listener);
+	}
 	
+	public PropertyChangeSupport getListeners() {
+		return listens;
+	}
+	
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		listens.removePropertyChangeListener(listener);
+	}
 }

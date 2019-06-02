@@ -1,16 +1,13 @@
 package com.advantest.gef.editpart;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-
 import com.advantest.gef.editpolicies.AppEditLayoutPolicy;
 import com.advantest.gef.figure.EntrepriseFigure;
 import com.advantest.gef.model.Entreprise;
-import com.advantest.gef.model.Node;
 
 public class EntreprisePart extends AbstractGraphicalEditPart {
 
