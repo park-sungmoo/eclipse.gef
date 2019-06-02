@@ -39,6 +39,10 @@ public class EmployeTreeEditPart extends AppAbstractTreeEditPart {
 		if (evt.getPropertyName().equals(Node.PROPERTY_DELETE_NODE)) {
 			refreshChildren();
 		}
+		
+		if (evt.getPropertyName().equals(Employe.PROPERTY_FIRSTNAME)) {
+			refreshVisuals();
+		}
 	}
 
 }

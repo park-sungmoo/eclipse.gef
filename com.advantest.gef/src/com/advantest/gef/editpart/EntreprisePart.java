@@ -46,10 +46,17 @@ public class EntreprisePart extends AppAbstractEditpart {
 		if (event.getPropertyName().equals(Node.PROPERTY_ADD_NODE)) {
 			refreshChildren();
 		}
+		
 		if (event.getPropertyName().equals(Node.PROPERTY_DELETE_NODE)) {
 			refreshChildren();
 		}
 		
+		if (event.getPropertyName().equals(Node.PROPERTY_RENAME)) {
+			refreshVisuals(); 
+		}
+		if(event.getPropertyName().equals(Entreprise.PROPERTY_CAPITAL)) {
+			refreshVisuals();
+		}
 	}
 
 }

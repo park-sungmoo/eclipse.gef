@@ -59,6 +59,14 @@ public class ServicePart extends AppAbstractEditpart {
 		if (evt.getPropertyName().equals(Node.PROPERTY_RENAME)) {
 			refreshVisuals();
 		}
+		
+		if (evt.getPropertyName().equals(Service.PROPERTY_COLOR)) {
+			refreshVisuals();
+		}
+		
+		if (evt.getPropertyName().equals(Service.PROPERTY_FLOOR)) {
+			refreshVisuals();
+		}
 	}
 
 }

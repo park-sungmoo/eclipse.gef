@@ -31,6 +31,7 @@ public class ServiceFigure extends Figure {
 		 * just for fun
 		 */
 		
+		/*
 		setForegroundColor(new Color(null, 
 				(new Double(Math.random()*128)).intValue(),
 				(new Double(Math.random()*128)).intValue(),
@@ -40,8 +41,9 @@ public class ServiceFigure extends Figure {
 				(new Double(Math.random()*128)).intValue() + 128,
 				(new Double(Math.random()*128)).intValue() + 128,
 				(new Double(Math.random()*128)).intValue() + 128));
+		*/
 		
-		
+		setForegroundColor(ColorConstants.black);
 		setBorder(new LineBorder(1));
 		setOpaque(true);
 	}

@@ -22,6 +22,14 @@ public class EntrepriseTreeEditPart extends AppAbstractTreeEditPart {
 		if (evt.getPropertyName().equals(Node.PROPERTY_DELETE_NODE)) {
 			refreshChildren();
 		}
+		
+		if (evt.getPropertyName().equals(Node.PROPERTY_RENAME)) {
+			refreshVisuals(); 
+		}
+		
+		if(evt.getPropertyName().equals(Entreprise.PROPERTY_CAPITAL)) {
+			refreshVisuals();
+		}	
 	}
 
 }
