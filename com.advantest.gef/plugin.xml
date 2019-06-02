@@ -15,8 +15,9 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="com.advantest.gef.Perspective"
-            name="RCP Perspective"
-            id="com.advantest.gef.perspective">
+            fixed="false"
+            id="com.advantest.gef.perspective"
+            name="RCP Perspective">
       </perspective>
    </extension>
    <extension

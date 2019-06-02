@@ -1,6 +1,5 @@
 package com.advantest.gef;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
