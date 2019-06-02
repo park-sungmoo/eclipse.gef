@@ -7,6 +7,7 @@ import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw2d.parts.ScrollableThumbnail;
+import org.eclipse.gef.ContextMenuProvider;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
@@ -37,6 +38,7 @@ import org.eclipse.ui.part.IPageSite;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.NewPropertySheetHandler;
 
+import com.advantest.gef.AppContextMenuProvider;
 import com.advantest.gef.editpart.AppEditPartFactory;
 import com.advantest.gef.model.Employe;
 import com.advantest.gef.model.Entreprise;
@@ -156,6 +158,13 @@ public class MyGraphicalEditor extends GraphicalEditor {
 		viewer.setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.NONE), MouseWheelZoomHandler.SINGLETON);
 
 		viewer.setKeyHandler(keyHandler);
+		
+		/*
+		 * context viewer
+		 */
+		
+		ContextMenuProvider provider = new AppContextMenuProvider(viewer, getActionRegistry());
+		viewer.setContextMenu(provider);
 
 	}
 
@@ -236,6 +245,12 @@ public class MyGraphicalEditor extends GraphicalEditor {
 			bars.updateActionBars();
 
 			getViewer().setKeyHandler(keyHandler);
+			
+			/*
+			 * context viewer
+			 */
+			ContextMenuProvider provider = new AppContextMenuProvider(getViewer(), getActionRegistry());
+			getViewer().setContextMenu(provider);
 		}
 
 		public Control getControl() {
